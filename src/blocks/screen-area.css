@@ -1,0 +1,17 @@
+.screen-area {
+   background-color: black;
+   width: 100%;
+   grid-area: section;
+   background-color: #fff;
+   border-radius: 40px;
+   padding: 50px 30px;
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   gap: 40px;
+}
+
+.header__title {
+   margin: 0;
+   font-size: 32px;
+}

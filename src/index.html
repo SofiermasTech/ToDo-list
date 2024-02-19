@@ -7,13 +7,42 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
    <title>ToDo-list</title>
-
+   <link rel="stylesheet" href="../src/pages/index.css">
 </head>
 
 <body class="page">
 
    <main class="main">
+      <div class="container">
+         <aside class="aside">
+            <h1 class="aside__title">ToDo-list</h1>
+            <nav class="aside__nav">
+               <ul class="aside__list">
+                  <li class="aside__item">Dashboard</li>
+                  <li class="aside__item">Calendar</li>
+                  <li class="aside__item">My tasks</li>
+                  <li class="aside__item">Statistic</li>
+                  <li class="aside__item">Document</li>
+               </ul>
+            </nav>
+            <div class="aside__wrap">2</div>
+            <div class="aside__wrap">3</div>
+            <div class="aside__wrap">4</div>
+         </aside>
+         <section class="screen-area">
+            <header class="header">
+               <h2 class="header__title">Hi, Alexander!</h2>
+            </header>
+            <div class="wrapper">
+               <input type="text" class="input" placeholder="Введите название" id="input-title">
+               <button class="btn" id="btn-create">Добавить</button>
+            </div>
+            <ul class="list-todo">
+               <li class="list-todo__item"><span>Название</span></li>
+            </ul>
 
+         </section>
+      </div>
 
    </main>
 
