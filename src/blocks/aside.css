@@ -13,7 +13,10 @@
 
 .aside__title {
    margin: 0;
-   font-size: 32px;
+   font-size: 26px;
+   color: #262626;
+   font-family: 'Open Sans', Arial, sans-serif;
+   font-weight: 800;
 }
 
 .aside__list {
@@ -27,6 +30,9 @@
    padding-left: 16px;
    width: 100%;
    position: relative;
+   color: #262626;
+   font-family: 'Open Sans', Arial, sans-serif;
+   font-weight: 500;
 }
 
 .aside__item::before {
