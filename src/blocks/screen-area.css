@@ -55,6 +55,10 @@
    cursor: pointer;
 }
 
+.btn_disable {
+   background-color: #9c9c9c;
+}
+
 .list-todo {
    list-style: none;
    margin: 20px 0;
@@ -84,14 +88,83 @@
    overflow-wrap: break-word;
 }
 
+.list-todo__container-btn {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 10px;
+}
+
+.list-todo__btn-done {
+   width: 22px;
+   height: 22px;
+   background: url('../images/circle_done1.png') no-repeat center;
+   background-size: 100%;
+   background-color: transparent;
+   border: none;
+   padding: 0;
+   cursor: pointer;
+   transition: .3s;
+}
+
+.list-todo__btn-edit {
+   margin-left: 4px;
+   width: 22px;
+   height: 22px;
+   background: url('../images/edit.png') no-repeat center;
+   background-size: 100%;
+   background-color: transparent;
+   border: none;
+   padding: 0;
+   cursor: pointer;
+   transition: .3s;
+}
+
+.list-todo__btn-done:hover {
+   transform: scale(1.2);
+}
+
+.list-todo__btn-edit:hover {
+   transform: scale(1.2);
+}
+
+.list-todo__btn-done_active {
+   background-image: url('../images/done.png');
+}
+
+.list-todo__btn-done_active:hover {
+   transform: none;
+}
+
 .list-todo__btn-deleted {
-display: block;
-   background: url('../images/deleted_black.png') no-repeat;
-   background-size: cover;
+   background: url('../images/deleted_black.png') no-repeat center;
+   background-size: 100%;
    width: 22px;
    height: 22px;
    background-color: transparent;
    border: none;
    padding: 0;
    cursor: pointer;
+   transition: .3s;
+}
+
+.list-todo__btn-deleted:hover {
+   transform: scale(1.2);
+}
+
+.no-list-todo {
+   margin: 0 auto;
+   padding-top: 40px;
+}
+
+.no-list-todo_hidden {
+   display: none;
+}
+
+.no-list-todo__text {
+   margin: 0;
+   font-weight: normal;
+   font-family: 'Open Sans', Arial, sans-serif;
+   color: #949494;
+   font-size: 18px;
 }

@@ -36,18 +36,27 @@
             <div class="wrapper">
                <input type="text" class="input" placeholder="Введите название" id="input-title">
                <button class="btn" id="btn-create">Добавить</button>
-
+               <div class="no-list-todo">
+                  <p class="no-list-todo__text">Нет добавленных задач</p>
+                </div>
                <ul class="list-todo">
-                  <!-- <li class="list-todo__item">
-                     <p class="list-todo__item-title">Название</p>
-                     <button class="list-todo__btn-deleted"></button>
-                  </li> -->
+                  
                </ul>
             </div>
          </section>
       </div>
-
    </main>
+
+   <template id="todo-template">
+      <li class="list-todo__item">
+         <p class="list-todo__item-title">Название</p>
+         <div class="list-todo__container-btn">
+            <button class="list-todo__btn-done"></button>
+            <button class="list-todo__btn-edit"></button>
+            <button class="list-todo__btn-deleted"></button>
+         </div>
+      </li>
+    </template>
 
 </body>
 
