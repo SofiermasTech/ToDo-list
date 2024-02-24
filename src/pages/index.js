@@ -4,6 +4,22 @@ const inputTitle = document.getElementById('input-title');
 const btnCreate = document.getElementById('btn-create');
 const listToDo = document.querySelector('.list-todo');
 const noTasksElement = document.querySelector('.no-list-todo');
+const popup = document.querySelector('.popup-edit');
+const btnPopupClose = document.querySelector('.popup__close');
+const inputPopup = document.querySelector('.popup__input');
+const btnSavePopup = document.querySelector('.popup__submit');
+
+
+function openPopup(popup) {
+   popup.classList.add('popup-edit_opened');
+}
+
+function closePopup(popup) {
+   popup.classList.remove('popup-edit_opened');
+}
+
+btnPopupClose.addEventListener('click', () => closePopup(popup));
+
 
 function renderNoTasks() {
    noTasksElement.classList.remove('no-list-todo_hidden');
@@ -16,25 +32,41 @@ function renderHasTasks() {
 function addTasks(inputValue) {
    const todoTemplate = document.querySelector('#todo-template').content;
    const todoElement = todoTemplate.querySelector('.list-todo__item').cloneNode(true);
+   const btnDeleted = todoElement.querySelector('.list-todo__btn-deleted');
+   const btnDone = todoElement.querySelector('.list-todo__btn-done');
+   const btnEdit = todoElement.querySelector('.list-todo__btn-edit');
+   const titleToDoList = todoElement.querySelector('.list-todo__item-title');
 
-   todoElement.querySelector('.list-todo__item-title').textContent = inputValue;
-   const BtnDeleted = todoElement.querySelector('.list-todo__btn-deleted');
-   const BtnDone = todoElement.querySelector('.list-todo__btn-done');
+   titleToDoList.textContent = inputValue;
 
-
-   BtnDone.addEventListener('click', (evt) => {
+   btnDone.addEventListener('click', (evt) => {
       evt.target.classList.toggle('list-todo__btn-done_active');
+      titleToDoList.classList.toggle('list-todo__item-title_done');
    })
 
+   btnEdit.addEventListener('click', () => {
+      openPopup(popup)
+      inputPopup.value = titleToDoList.textContent;
+   })
 
-   BtnDeleted.addEventListener('click', () => {
-      const listToDoItem = BtnDeleted.closest('.list-todo__item');
+   btnDeleted.addEventListener('click', () => {
+      const listToDoItem = btnDeleted.closest('.list-todo__item');
       listToDoItem.remove();
 
       if (listToDo.children.length === 0) {
          renderNoTasks();
       }
    })
+
+   function savePopupEdit(evt) {
+      evt.preventDefault();
+
+      titleToDoList.textContent = inputPopup.value;
+      closePopup(popup);
+   }
+
+   btnSavePopup.addEventListener('click', savePopupEdit);
+
    listToDo.append(todoElement);
 }
 

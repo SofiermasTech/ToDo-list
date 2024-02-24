@@ -29,10 +29,11 @@
    border-radius: 46px;
    /* filter: blur(2px); */
    display: grid;
-   grid-template-columns: repeat(6, 1fr);
-   gap: 40px;
+   grid-template-columns: repeat(5, 1fr);
+   gap: 30px;
    grid-template-areas:
-      "aside section section section section section";
+      "aside section section section section";
    justify-items: center;
    box-sizing: border-box;
+   position: relative;
 }
