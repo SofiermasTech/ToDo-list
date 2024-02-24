@@ -10,6 +10,7 @@ const inputPopup = document.querySelector('.popup__input');
 const btnSavePopup = document.querySelector('.popup__submit');
 
 
+
 function openPopup(popup) {
    popup.classList.add('popup-edit_opened');
 }
@@ -32,40 +33,61 @@ function renderHasTasks() {
 function addTasks(inputValue) {
    const todoTemplate = document.querySelector('#todo-template').content;
    const todoElement = todoTemplate.querySelector('.list-todo__item').cloneNode(true);
-   const btnDeleted = todoElement.querySelector('.list-todo__btn-deleted');
-   const btnDone = todoElement.querySelector('.list-todo__btn-done');
-   const btnEdit = todoElement.querySelector('.list-todo__btn-edit');
+   // const btnDeleted = todoElement.querySelectorAll('.list-todo__btn-deleted');
+   // const btnDone = todoElement.querySelectorAll('.list-todo__btn-done');
+   // const btnEdit = todoElement.querySelectorAll('.list-todo__btn-edit');
    const titleToDoList = todoElement.querySelector('.list-todo__item-title');
 
    titleToDoList.textContent = inputValue;
 
-   btnDone.addEventListener('click', (evt) => {
-      evt.target.classList.toggle('list-todo__btn-done_active');
-      titleToDoList.classList.toggle('list-todo__item-title_done');
-   })
-
-   btnEdit.addEventListener('click', () => {
-      openPopup(popup)
+   function loadValueForm() {
       inputPopup.value = titleToDoList.textContent;
-   })
+   }
 
-   btnDeleted.addEventListener('click', () => {
-      const listToDoItem = btnDeleted.closest('.list-todo__item');
-      listToDoItem.remove();
+   listToDo.addEventListener('click', function (evt) {
+      console.log(evt.target);
+      if (evt.target.classList.contains('list-todo__btn-done')) {
+         evt.target.classList.toggle('list-todo__btn-done_active');
+         titleToDoList.classList.toggle('list-todo__item-title_done');
+      } else if (evt.target.classList.contains('list-todo__btn-edit')) {
+         openPopup(popup);
+         loadValueForm();
+      } else if (evt.target.classList.contains('list-todo__btn-deleted')) {
+         evt.target.closest('.list-todo__item').remove();
 
-      if (listToDo.children.length === 0) {
-         renderNoTasks();
+         if (listToDo.children.length === 0) {
+            renderNoTasks();
+         }
       }
    })
-
-   function savePopupEdit(evt) {
+   /*
+      btnDone.addEventListener('click', (evt) => {
+         evt.target.classList.toggle('list-todo__btn-done_active');
+         titleToDoList.classList.toggle('list-todo__item-title_done');
+      })
+   
+      btnEdit.addEventListener('click', () => {
+         openPopup(popup),
+            loadValueForm()
+      })
+   
+      btnDeleted.addEventListener('click', () => {
+         const listToDoItem = btnDeleted.closest('.list-todo__item');
+         listToDoItem.remove();
+   
+         if (listToDo.children.length === 0) {
+            renderNoTasks();
+         }
+      })
+   */
+   function handlePopupEditSubmit(evt) {
       evt.preventDefault();
 
       titleToDoList.textContent = inputPopup.value;
       closePopup(popup);
    }
 
-   btnSavePopup.addEventListener('click', savePopupEdit);
+   btnSavePopup.addEventListener('click', handlePopupEditSubmit);
 
    listToDo.append(todoElement);
 }
