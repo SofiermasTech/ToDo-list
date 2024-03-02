@@ -1,13 +1,13 @@
 .screen-area {
    width: 100%;
-   grid-area: section;
+   /* grid-area: section; */
    border-radius: 40px;
    padding: 50px 30px;
    box-sizing: border-box;
    display: flex;
    flex-direction: column;
    gap: 40px;
-   overflow: hidden;
+   /* overflow: hidden; */
 }
 
 .header__title {
@@ -20,14 +20,15 @@
 }
 
 .wrapper {
-   display: flex;
-   flex-direction: column;
-   gap: 10px;
+   box-sizing: border-box;
+   margin: 0 auto;
+   width: 100%;
    /* overflow-y: scroll; */
 }
 
 .input {
-   height: 40px;
+   height: 60px;
+   width: 100%;
    border: 2px dashed #000;
    border-radius: 8px;
    padding: 8px 30px;
@@ -36,7 +37,10 @@
    font-family: 'Open Sans', Arial, sans-serif;
    font-weight: 500;
    font-size: 18px;
+   margin-bottom: 10px;
+   box-sizing: border-box;
 }
+
 
 .input::placeholder {
    font-size: 18px;
@@ -44,6 +48,7 @@
 }
 
 .btn {
+   width: 100%;
    padding: 20px;
    background-color: #262626;
    color: #fff;
@@ -177,4 +182,5 @@
    font-family: 'Open Sans', Arial, sans-serif;
    color: #949494;
    font-size: 18px;
+   text-align: center;
 }

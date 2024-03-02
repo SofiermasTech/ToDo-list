@@ -1,0 +1,12 @@
+.section-time {
+   width: 100%;
+   height: 300px;
+   background-color: #fff;
+   text-align: center;
+}
+
+
+.section-time__data {
+   font-size: 28px;
+   color: #262626;
+}

@@ -11,46 +11,50 @@
 </head>
 
 <body class="page">
+   <aside class="aside">
+      <div class="aside-wrapper">
+         <h1 class="aside__title">DashBoard<br><span class="aside__title-by">by SofiermasTech</span></h1>
+         <nav class="aside__nav">
+            <ul class="aside__list">
+               <li class="aside__item" aria-selected="false" id="dashboard">
+                  <div class="aside__item-img icon-dashboard"></div>
+                  <span>Dashboard</span>
+               </li>
+               <li class="aside__item" aria-selected="false" id="calendar">
+                  <div class="aside__item-img icon-calendar"></div>
+                  <span>Календарь</span>
+               </li>
+               <li class="aside__item" aria-selected="false" id="todo-list">
+                  <div class="aside__item-img icon-todo-list"></div>
+                  <span>ToDo-list</span>
+               </li>
+               <li class="aside__item" aria-selected="false" id="statistic">
+                  <div class="aside__item-img icon-statistic"></div>
+                  <span>Statistic</span>
+               </li>
+               <!-- <li class="aside__item">Document</li> -->
+            </ul>
 
-   <main class="main">
-      <div class="container">
-         <aside class="aside">
-            <h1 class="aside__title">ToDo-list</h1>
-            <nav class="aside__nav">
-               <ul class="aside__list">
-                  <li class="aside__item">
-                     <img class="aside__item-img dashboard" src="<%=require('./images/dashboard_b.png')%>" alt="">
-                     <span>Dashboard</span>
-                  </li>
-                  <li class="aside__item ">
-                     <img class="aside__item-img calendar" src="<%=require('./images/calendar_b.png')%>" alt="">
-                     <span>Календарь</span>
-                  </li>
-                  <li class="aside__item ">
-                     <img class="aside__item-img todo-list" src="<%=require('./images/list_black.png')%>" alt="">
-                     <span>ToDo-list</span>
-                  </li>
-                  <li class="aside__item ">
-                     <img class="aside__item-img statistic" src="<%=require('./images/statistic_b.png')%>" alt="">
-                     <span>Statistic</span>
-                  </li>
-                  <!-- <li class="aside__item">Document</li> -->
-               </ul>
-            </nav>
-            <!-- <div class="aside__wrap">2</div>
-            <div class="aside__wrap">3</div> -->
-            <div class="aside__settings">
-               <p class="aside__item settings">
-                  <img class="aside__item-img statistic" src="<%=require('./images/settings_b.png')%>" alt="">
-                  <span>Настройки</span>
-               </p>
+            <div class="aside__item" aria-selected="false" id="settings">
+               <div class="aside__item-img icon-settings"></div>
+               <span>Настройки</span>
             </div>
-         </aside>
+
+         </nav>
+         <!-- <div class="aside__wrap">2</div>
+         <div class="aside__wrap">3</div> -->
+
+      </div>
+   </aside>
+   <main class="main">
+
+      <div class="container">
+
          <section class="screen-area">
             <header class="header">
                <h2 class="header__title">Привет, Соня!</h2>
             </header>
-            <div class="wrapper">
+            <div id="section-todoList" class="wrapper" hidden role="tabpanel" aria-labelledby="todo-list">
                <input type="text" class="input" placeholder="Введите название" id="input-title">
                <button class="btn" id="btn-create">Добавить</button>
                <div class="no-list-todo">
@@ -59,6 +63,24 @@
                <ul class="list-todo">
 
                </ul>
+            </div>
+            <div id="section-calendar" class="section-time" hidden role="tabpanel" aria-labelledby="calendar">
+               <p class="section-time__data">Дата</p>
+               <button id="full" class="section-time__btn btn">Полная</button>
+               <button id="date" class="section-time__btn btn">Дата</button>
+               <button id="time" class="section-time__btn btn">Время</button>
+            </div>
+
+            <div id="section-statistic" class="statistic" hidden role="tabpanel" aria-labelledby="statistic">
+               <p class="section-statistic__data">Статистика</p>
+
+            </div>
+
+            <div id="section-dashboard" class="dashboard" hidden role="tabpanel" aria-labelledby="dashboard">
+               <p class="section-dashboard__data">Дата</p>
+            </div>
+            <div id="section-settings" class="settings" hidden role="tabpanel" aria-labelledby="settings">
+               <p class="section-settings__data">Настройки</p>
             </div>
          </section>
       </div>

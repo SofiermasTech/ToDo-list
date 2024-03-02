@@ -24,3 +24,12 @@
    src: local('Open Sans'),
       url("../vendor/fonts/OpenSans-Regular.woff") format("woff");
 }
+
+@font-face {
+   font-family: 'Zeyada';
+      font-weight: 400;
+   font-style: normal;
+   font-display: swap;
+   src: local('OZeyada'),
+      url("../vendor/fonts/Zeyada-Regular.ttf") format("truetype");
+}
