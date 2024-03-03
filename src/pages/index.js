@@ -3,67 +3,56 @@ import './index.css';
 /*---------------------------------Переключение вкладок aside------------------------------------------- */
 
 // Кнопки aside
-const btnAsideAll = document.querySelectorAll('.aside__item');
-const tabPanels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
-// const btnDashboard = document.getElementById('dashboard');
-// const btnCalendar = document.getElementById('calendar');
-// const btnToDoList = document.getElementById('todo-list');
-const btnIcon = document.querySelectorAll('.aside__item-img');
-
+const btnAsideAll = Array.from(document.querySelectorAll('.aside__item'));
 // Section для переключений
-// const sectionDashboard = document.getElementById('section-dashboard');
-// const sectionStatistic = document.getElementById('section-statistic');
-// const sectionCalendar = document.getElementById('section-calendar');
-// const ToDoList = document.getElementById('section-todoList');
+const tabPanels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+// объект для хранения id кнопки и класса иконки
+const iconClasses = {
+   'statistic': 'icon-statistic',
+   'dashboard': 'icon-dashboard',
+   'calendar': 'icon-calendar',
+   'todo-list': 'icon-todo-list',
+   'settings': 'icon-settings'
+};
 
+function removeAllActiveClasses() {
+   btnAsideAll.forEach(tab => {
+      tab.setAttribute('aria-selected', false);
+      tab.classList.remove('aside__item-type-active');
+      Object.values(iconClasses).forEach(iconClass => {
+         document.querySelector('.' + iconClass).classList.remove(iconClass + '-active');
+      });
+   });
+}
+
+function addActiveClasses(id) {
+   //.find() является методом для массивов, а не для коллекций в виде кнопок --> 
+   // переделала btnAsideAll в массив с помощью Array.from
+   btnAsideAll.find((tab) => tab.id === id).setAttribute('aria-selected', true);
+   btnAsideAll.find((tab) => tab.id === id).classList.add('aside__item-type-active');
+   document.querySelector('.' + iconClasses[id]).classList.add(iconClasses[id] + '-active');
+
+   //второй вариант (есть не решенная ошибка)
+   // const tab = btnAsideAll.querySelector(`#${id}`);
+   // tab.setAttribute('aria-selected', true);
+   // tab.classList.add('aside__item-type-active');
+   // document.querySelector('.' + iconClasses[id]).classList.add(iconClasses[id] + '-active');
+}
+
+function getTabPanel(id) {
+   return tabPanels.find(panel => panel.getAttribute('aria-labelledby') === id);
+}
 
 function handleAsideClick(e) {
    // 1. Скрыть все tabPanels
-   tabPanels.forEach(function (panel) {
-      panel.hidden = true;
-      console.log(panel)
-   })
+   tabPanels.forEach(panel => panel.hidden = true);
    // 2. aria-selected = false у всех элементов
-   btnAsideAll.forEach((tab) => {
-      tab.setAttribute('aria-selected', false);
-      tab.classList.remove('aside__item-type-active');
-      document.querySelector('.icon-statistic').classList.remove('icon-statistic-active');
-      document.querySelector('.icon-dashboard').classList.remove('icon-dashboard-active');
-      document.querySelector('.icon-todo-list').classList.remove('icon-todo-list-active');
-      document.querySelector('.icon-calendar').classList.remove('icon-calendar-active');
-      document.querySelector('.icon-settings').classList.remove('icon-settings-active');
-   })
-   // removeIconBtn();
+   removeAllActiveClasses();
    // 3. Поменять у кликнутой кнопки значение aria-selected на true
-   e.currentTarget.setAttribute('aria-selected', true);
-   e.currentTarget.classList.add('aside__item-type-active');
-   console.log(e.currentTarget);
-   if (e.currentTarget.id === 'statistic') {
-      console.log(e.currentTarget.id)
-      document.querySelector('.icon-statistic').classList.add('icon-statistic-active');
-   }
-   if (e.currentTarget.id === 'dashboard') {
-      document.querySelector('.icon-dashboard').classList.add('icon-dashboard-active');
-   }
-   if (e.currentTarget.id === 'calendar') {
-      document.querySelector('.icon-calendar').classList.add('icon-calendar-active');
-   }
-   if (e.currentTarget.id === 'todo-list') {
-      document.querySelector('.icon-todo-list').classList.add('icon-todo-list-active');
-   }
-   if (e.currentTarget.id === 'settings') {
-      document.querySelector('.icon-settings').classList.add('icon-settings-active');
-   }
-
+   const id = e.currentTarget.id;
+   addActiveClasses(id);
    // 4. Отобразить нужный tapPanel
-   const { id } = e.currentTarget;
-   const tabPanel = tabPanels.find(panel => {
-      if (panel.getAttribute('aria-labelledby') === id) {
-         return true;
-      }
-   })
-   //console.log(tabPanel);
-   tabPanel.hidden = false;
+   getTabPanel(id).hidden = false;
 }
 
 // слушатель для всех кнопок aside
