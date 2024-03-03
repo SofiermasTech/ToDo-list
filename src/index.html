@@ -55,8 +55,10 @@
                <h2 class="header__title">Привет, Соня!</h2>
             </header>
             <div id="section-todoList" class="wrapper" hidden role="tabpanel" aria-labelledby="todo-list">
-               <input type="text" class="input" placeholder="Введите название" id="input-title">
-               <button class="btn" id="btn-create">Добавить</button>
+               <form name="add" action="#">
+                  <input name="addInput" type="text" class="input" placeholder="Введите название" id="input-title">
+                  <button name="addBtn" class="btn btn_disable" id="btn-create" disabled>Добавить</button>
+               </form>
                <div class="no-list-todo">
                   <p class="no-list-todo__text">Нет добавленных задач</p>
                </div>

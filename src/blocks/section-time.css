@@ -5,8 +5,12 @@
    text-align: center;
 }
 
-
 .section-time__data {
    font-size: 28px;
    color: #262626;
+}
+
+.section-time__btn {
+   margin-bottom: 10px;
+   width: 30%;
 }

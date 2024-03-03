@@ -66,6 +66,7 @@
 
 .btn_disable {
    background-color: #9c9c9c;
+   cursor: default;
 }
 
 .list-todo {

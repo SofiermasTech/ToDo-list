@@ -1,6 +1,7 @@
 import './index.css';
 
-// Переключение вкладок 
+/*---------------------------------Переключение вкладок aside------------------------------------------- */
+
 // Кнопки aside
 const btnAsideAll = document.querySelectorAll('.aside__item');
 const tabPanels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
@@ -15,24 +16,7 @@ const btnIcon = document.querySelectorAll('.aside__item-img');
 // const sectionCalendar = document.getElementById('section-calendar');
 // const ToDoList = document.getElementById('section-todoList');
 
-function changeIconBtn() {
-   btnAsideAll.forEach((tab) => {
-      if (tab.getAttribute('aria-selected', true)) {
-         if (tab.id === 'statistic') {
-            console.log(tab)
-            document.querySelector('.icon-statistic').classList.add('icon-statistic-active');
-         }
-         
 
-
-         
-
-      }
-   })
-}
-
-
-// логика
 function handleAsideClick(e) {
    // 1. Скрыть все tabPanels
    tabPanels.forEach(function (panel) {
@@ -70,7 +54,7 @@ function handleAsideClick(e) {
    if (e.currentTarget.id === 'settings') {
       document.querySelector('.icon-settings').classList.add('icon-settings-active');
    }
-   
+
    // 4. Отобразить нужный tapPanel
    const { id } = e.currentTarget;
    const tabPanel = tabPanels.find(panel => {
@@ -86,8 +70,9 @@ function handleAsideClick(e) {
 btnAsideAll.forEach(item => item.addEventListener('click', handleAsideClick))
 
 
-const inputTitle = document.getElementById('input-title');
-const btnCreate = document.getElementById('btn-create');
+
+/*---------------------------------ToDo-List------------------------------------------- */
+
 const listToDo = document.querySelector('.list-todo');
 const noTasksElement = document.querySelector('.no-list-todo');
 const popup = document.querySelector('.popup-edit');
@@ -95,8 +80,10 @@ const btnPopupClose = document.querySelector('.popup__close');
 const inputPopup = document.querySelector('.popup__input');
 const btnSavePopup = document.querySelector('.popup__submit');
 
-
-
+const formAddList = document.forms.add;
+const inputTitleAdd = formAddList.elements.addInput;
+const btnFormCreate = formAddList.elements.addBtn;
+console.log(inputTitleAdd)
 
 function openPopup(popup) {
    popup.classList.add('popup-edit_opened');
@@ -115,6 +102,16 @@ function renderNoTasks() {
 
 function renderHasTasks() {
    noTasksElement.classList.add('no-list-todo_hidden');
+}
+
+function setSubmitButtonState(isFormValid) {
+   if (isFormValid) {
+      btnFormCreate.removeAttribute('disabled');
+      btnFormCreate.classList.remove('btn_disable');
+   } else {
+      btnFormCreate.setAttribute('disabled', true);
+      btnFormCreate.classList.add('btn_disable');
+   }
 }
 
 function addTasks(inputValue) {
@@ -165,13 +162,20 @@ function addTasks(inputValue) {
 }
 
 
-function keyHandler(evt) {
-   if (evt.key === 'Enter') {
-      addTasks(inputTitle.value);
-   }
-}
+//--------Обработчик на Enter ненужен, т.к. происходит и так происходит submit, 
+//--------если пользователь находится в одном из полей формы. 
+//--------Поэтому дополнительные обработчики нажатия клавиш для сабмита делать не нужно.
 
-inputTitle.addEventListener('keydown', keyHandler);
+// formAddList.addEventListener('keydown', function (evt) {
+//    if (evt.key === 'Enter') {
+//       if (inputTitleAdd.value.length !== 0) {
+//          addTasks(inputTitleAdd.value);
+//          renderHasTasks();
+//          //setSubmitButtonState(false);
+
+//       }
+//    }
+// });
 
 function closePopupEsc(evt) {
    if (evt.key === 'Escape') {
@@ -182,18 +186,22 @@ function closePopupEsc(evt) {
 
 document.addEventListener('keydown', closePopupEsc);
 
-btnCreate.addEventListener('click', () => {
-   if (inputTitle.value.length === 0) {
-      return;
-   }
+formAddList.addEventListener('submit', function (evt) {
+   evt.preventDefault();
 
-   addTasks(inputTitle.value);
+   addTasks(inputTitleAdd.value);
    renderHasTasks();
+   setSubmitButtonState(false);
+   formAddList.reset();
+})
 
-   inputTitle.value = '';
+formAddList.addEventListener('input', function (evt) {
+   const isValid = inputTitleAdd.value.length > 0;
+   setSubmitButtonState(isValid)
 })
 
 
+/*---------------------------------Таймер------------------------------------------- */
 let mode = 'time';
 const btnFull = document.getElementById('full');
 const btnDate = document.getElementById('date');
@@ -211,7 +219,6 @@ function bindMode(name) {
       mode = name;
       update();
    }
-
 }
 
 update();
