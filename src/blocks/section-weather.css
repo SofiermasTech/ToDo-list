@@ -1,0 +1,184 @@
+.weather {}
+
+.weather__wrapper {
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   column-gap: 6%;
+   row-gap: 30px;
+}
+
+.weather__container {
+   background-color: #262626;
+   padding: 20px;
+   border-radius: 16px;
+   color: #ffffff;
+   width: 21%;
+}
+
+.weather__subtitle {
+   margin: 0;
+   font-size: 10px;
+   line-height: 1.3;
+   color: rgba(255, 255, 255, .5);
+   font-family: 'Open Sans', Arial, sans-serif;
+   font-weight: 400;
+}
+
+.weather__city {
+   margin: 0;
+   font-size: 32px;
+   line-height: 1.3;
+   color: #ffffff;
+   font-family: 'Open Sans', Arial, sans-serif;
+   font-weight: 500;
+}
+
+.weather__temperature {
+   margin: 20px auto 0;
+   font-size: 96px;
+   line-height: 1.3;
+   color: #ffffff;
+   font-family: 'Open Sans', Arial, sans-serif;
+   font-weight: 800;
+   text-align: center;
+}
+
+.weather__description {
+   margin: 0;
+   font-size: 12px;
+   line-height: 1.3;
+   color: rgba(255, 255, 255, .5);
+   font-family: 'Open Sans', Arial, sans-serif;
+   font-weight: 400;
+}
+
+.weather__info-container {
+   width: 68%;
+}
+
+.weather__info-title {
+   margin: 20px 0;
+   font-size: 22px;
+   line-height: 1.3;
+   color: #262626;
+   font-family: 'Open Sans', Arial, sans-serif;
+   font-weight: 800;
+}
+
+.weather__info-items {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 16px;
+}
+
+.weather__info-item {
+   background-color: #ffffff;
+   border-radius: 16px;
+   padding: 14px;
+   width: 25%;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   gap: 14px;
+}
+
+.weather__info-item-title {
+   margin: 0;
+   font-size: 12px;
+   line-height: 1.3;
+   color: #262626;
+   font-family: 'Open Sans', Arial, sans-serif;
+   font-weight: 400;
+}
+
+.weather__info-item-text {
+   margin: 0;
+   font-size: 22px;
+   line-height: 1.3;
+   color: #262626;
+   font-family: 'Open Sans', Arial, sans-serif;
+   font-weight: 800;
+}
+
+.weather__info-item-icon {
+   background: url('../images/temperature.png') center no-repeat;
+   width: 32px;
+   height: 32px;
+   padding: 6px;
+   background-size: contain;
+}
+
+.weather__other-city {
+   width: 21%;
+   display: flex;
+   gap: 20px;
+   flex-direction: column;
+}
+
+.weather__other-city-wrapper {
+   border: 2px dashed #262626;
+   padding: 14px 20px;
+   border-radius: 16px;
+   color: #262626;
+   width: 100%;
+   display: flex;
+   /* gap: 20px; */
+   justify-content: space-between;
+   align-items: flex-end;
+}
+
+.weather__other-city-subtitle {
+   margin: 0;
+   font-size: 10px;
+   line-height: 1.3;
+   color: rgba(38, 38, 38, .6);
+   font-family: 'Open Sans', Arial, sans-serif;
+   font-weight: 400;
+}
+
+.weather__other-city-title {
+   margin: 4px 0 6px;
+   font-size: 24px;
+   line-height: 1.3;
+   color: #262626;
+   font-family: 'Open Sans', Arial, sans-serif;
+   font-weight: 800;
+}
+
+.weather__other-city-description {
+   margin: 0;
+   font-size: 12px;
+   line-height: 1.3;
+   color: #262626;
+   font-family: 'Open Sans', Arial, sans-serif;
+   font-weight: 400;
+}
+
+.weather__other-city-icon {
+   background: url('../images/clouds_b.png') center no-repeat;
+   width: 24px;
+   height: 24px;
+   padding: 6px;
+   background-size: contain;
+}
+
+.weather__other-city-temperature {
+   margin: 10px 0 0;
+   font-size: 16px;
+   line-height: 1.3;
+   color: #262626;
+   font-family: 'Open Sans', Arial, sans-serif;
+   font-weight: 800;
+   text-align: center;
+}
+
+.weather__other-city-add {
+   margin: 0 auto;
+   font-size: 16px;
+   line-height: 1.3;
+   color: #262626;
+   font-family: 'Open Sans', Arial, sans-serif;
+   font-weight: 500;
+   text-align: center;
+}

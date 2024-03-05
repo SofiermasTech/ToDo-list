@@ -94,17 +94,19 @@
    height: 18px;
 }
 
-.icon-statistic {
-   background: url('../images/statistic_b.png') no-repeat center;
+.icon-weather {
+   background: url('../images/cloud_b.png') no-repeat center;
    background-size: contain;
+   width: 22px;
+   height: 22px;
 }
 
-.aside__item:hover .icon-statistic {
-   background-image: url('../images/statistic_w.png');
+.aside__item:hover .icon-weather {
+   background-image: url('../images/cloud.png');
 }
 
-.icon-statistic-active {
-   background-image: url('../images/statistic_w.png');
+.icon-weather-active {
+   background-image: url('../images/cloud.png');
 }
 
 .icon-dashboard {

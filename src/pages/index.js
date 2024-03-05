@@ -8,7 +8,7 @@ const btnAsideAll = Array.from(document.querySelectorAll('.aside__item'));
 const tabPanels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
 // объект для хранения id кнопки и класса иконки
 const iconClasses = {
-   'statistic': 'icon-statistic',
+   'weather': 'icon-weather',
    'dashboard': 'icon-dashboard',
    'calendar': 'icon-calendar',
    'todo-list': 'icon-todo-list',

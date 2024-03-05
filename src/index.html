@@ -28,9 +28,9 @@
                   <div class="aside__item-img icon-todo-list"></div>
                   <span>ToDo-list</span>
                </li>
-               <li class="aside__item" aria-selected="false" id="statistic">
-                  <div class="aside__item-img icon-statistic"></div>
-                  <span>Statistic</span>
+               <li class="aside__item" aria-selected="false" id="weather">
+                  <div class="aside__item-img icon-weather"></div>
+                  <span>Погода</span>
                </li>
                <!-- <li class="aside__item">Document</li> -->
             </ul>
@@ -52,7 +52,14 @@
 
          <section class="screen-area">
             <header class="header">
-               <h2 class="header__title">Привет, Соня!</h2>
+               <div class="header__wrapper-welcome">
+                  <div class="header__avatar"></div>
+                  <h2 class="header__title"><span class="header__title-span">Привет,</span><br>Соня</h2>
+                  <!-- <div class="header__date">5 марта</div> -->
+
+               </div>
+               <div class="header__toggle-theme">Тема</div>
+               <div class="header__today">Дата</div>
             </header>
             <div id="section-todoList" class="wrapper" hidden role="tabpanel" aria-labelledby="todo-list">
                <form name="add" action="#">
@@ -73,17 +80,86 @@
                <button id="time" class="section-time__btn btn">Время</button>
             </div>
 
-            <div id="section-statistic" class="statistic" hidden role="tabpanel" aria-labelledby="statistic">
-               <p class="section-statistic__data">Статистика</p>
+            <div id="section-weather" class="weather" hidden role="tabpanel" aria-labelledby="weather">
+               <div class="weather__wrapper">
+                  <div class="weather__container">
+                     <p class="weather__subtitle">Wheather today is</p>
+                     <h1 class="weather__city">Los Angeles</h1>
+                     <p class="weather__temperature">10&deg;</>
+                     <p class="weather__description">Преимущественно облачно</p>
+                  </div>
+                  <div class="weather__info-container">
+                     <h3 class="weather__info-title">Информация о погоде</h3>
+                     <div class="weather__info-items">
+                        <div class="weather__info-item">
+                           <div class="weather__info-item-icon"></div>
+                           <div class="weather__info-item-container">
+                              <p class="weather__info-item-title">Ощущается как:</p>
+                              <p class="weather__info-item-text">6&deg;</p>
+                           </div>
+                        </div>
+                        <div class="weather__info-item">
+                           <div class="weather__info-item-icon"></div>
+                           <div class="weather__info-item-container">
+                              <p class="weather__info-item-title">Скорость ветра:</p>
+                              <p class="weather__info-item-text">6 км/ч</p>
+                           </div>
+                        </div>
+                        <div class="weather__info-item">
+                           <div class="weather__info-item-icon"></div>
+                           <div class="weather__info-item-container">
+                              <p class="weather__info-item-title">Влажность:</p>
+                              <p class="weather__info-item-text">40%</p>
+                           </div>
+                        </div>
+                        <div class="weather__info-item">
+                           <div class="weather__info-item-icon"></div>
+                           <div class="weather__info-item-container">
+                              <p class="weather__info-item-title">УФ-индекс:</p>
+                              <p class="weather__info-item-text">0</p>
+                           </div>
+                        </div>
+                        <div class="weather__info-item">
+                           <div class="weather__info-item-icon"></div>
+                           <div class="weather__info-item-container">
+                              <p class="weather__info-item-title">Восход солнца:</p>
+                              <p class="weather__info-item-text">07:02</p>
+                           </div>
+                        </div>
+                        <div class="weather__info-item">
+                           <div class="weather__info-item-icon"></div>
+                           <div class="weather__info-item-container">
+                              <p class="weather__info-item-title">Закат солнца:</p>
+                              <p class="weather__info-item-text">18:18</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="weather__other-city">
+                     <div class="weather__other-city-wrapper">
+                        <div>
+                           <p class="weather__other-city-subtitle">Россия</p>
+                           <h4 class="weather__other-city-title">Москва</h4>
+                           <p class="weather__other-city-description">Солнечно</p>
+                        </div>
+                        <div>
+                           <div class="weather__other-city-icon"></div>
+                           <p class="weather__other-city-temperature">16&deg;</p>
+                        </div>
+                     </div>
+                     <div class="weather__other-city-wrapper">
+                        <p class="weather__other-city-add">+ Добавить</p>
+                     </div>
 
-            </div>
+                  </div>
+               </div>
 
-            <div id="section-dashboard" class="dashboard" hidden role="tabpanel" aria-labelledby="dashboard">
-               <p class="section-dashboard__data">Дата</p>
-            </div>
-            <div id="section-settings" class="settings" hidden role="tabpanel" aria-labelledby="settings">
-               <p class="section-settings__data">Настройки</p>
-            </div>
+               <div id="section-dashboard" class="dashboard" hidden role="tabpanel" aria-labelledby="dashboard">
+                  <p class="section-dashboard__data">Дата</p>
+               </div>
+               <div id="section-settings" class="settings" hidden role="tabpanel" aria-labelledby="settings">
+                  <p class="section-settings__data">Настройки</p>
+               </div>
          </section>
       </div>
       <template id="todo-template">
