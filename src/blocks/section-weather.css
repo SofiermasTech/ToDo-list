@@ -6,7 +6,9 @@
    column-gap: 6%;
    row-gap: 30px;
    display: grid;
-   grid: auto-flow auto / 26% 66%;
+   /* grid: auto-flow auto / 26% 66%; */
+   grid-template-columns: 26% 68%;
+   grid-auto-flow: row;
    justify-items: start;
 }
 
@@ -186,7 +188,9 @@
    text-align: center;
 }
 
-.weather__weekly {}
+.weather__weekly {
+   width: 100%;
+}
 
 .weather__weekly-title {
    margin: -24px 4px 8px;
@@ -197,7 +201,9 @@
 
 .weather__weekly-items {
    display: flex;
-   gap: 14px;
+   flex-wrap: wrap;
+   width: 100%;
+   justify-content: space-between;
 }
 
 .weather__weekly-item {
@@ -205,7 +211,6 @@
    border-radius: 16px;
    padding: 19px 28px;
    box-sizing: border-box;
-   margin: 0 auto;
 }
 
 .weather__weekly-item-day {
