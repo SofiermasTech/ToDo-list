@@ -1,11 +1,13 @@
-.weather {}
+.weather {
+   width: 100%;
+}
 
 .weather__wrapper {
-   width: 100%;
-   display: flex;
-   flex-wrap: wrap;
    column-gap: 6%;
    row-gap: 30px;
+   display: grid;
+   grid: auto-flow auto / 26% 66%;
+   justify-items: start;
 }
 
 .weather__container {
@@ -13,7 +15,8 @@
    padding: 20px;
    border-radius: 16px;
    color: #ffffff;
-   width: 21%;
+   width: 100%;
+   box-sizing: border-box;
 }
 
 .weather__subtitle {
@@ -54,7 +57,7 @@
 }
 
 .weather__info-container {
-   width: 68%;
+   width: 100%;
 }
 
 .weather__info-title {
@@ -68,6 +71,7 @@
 
 .weather__info-items {
    display: flex;
+   justify-content: space-between;
    flex-wrap: wrap;
    gap: 16px;
 }
@@ -110,7 +114,8 @@
 }
 
 .weather__other-city {
-   width: 21%;
+   width: 100%;
+   box-sizing: border-box;
    display: flex;
    gap: 20px;
    flex-direction: column;
@@ -121,9 +126,7 @@
    padding: 14px 20px;
    border-radius: 16px;
    color: #262626;
-   width: 100%;
    display: flex;
-   /* gap: 20px; */
    justify-content: space-between;
    align-items: flex-end;
 }
@@ -180,5 +183,55 @@
    color: #262626;
    font-family: 'Open Sans', Arial, sans-serif;
    font-weight: 500;
+   text-align: center;
+}
+
+.weather__weekly {}
+
+.weather__weekly-title {
+   margin: -24px 4px 8px;
+   font-weight: 400;
+   font-size: 12px;
+   color: #757575;
+}
+
+.weather__weekly-items {
+   display: flex;
+   gap: 14px;
+}
+
+.weather__weekly-item {
+   background-color: #262626;
+   border-radius: 16px;
+   padding: 19px 28px;
+   box-sizing: border-box;
+   margin: 0 auto;
+}
+
+.weather__weekly-item-day {
+   margin: 0;
+   padding-bottom: 12px;
+   border-bottom: 1px solid #525252;
+   font-size: 20px;
+   font-weight: 800;
+   color: #ffffff;
+   font-family: 'Open Sans', Arial, sans-serif;
+   text-align: center;
+}
+
+.weather__weekly-item-img {
+   background: url('../images/cloud.png') no-repeat center;
+   background-size: contain;
+   width: 48px;
+   height: 48px;
+   margin: 18px 0;
+}
+
+.weather__weekly-item-degree {
+   margin: 0;
+   font-size: 28px;
+   font-weight: 800;
+   color: #ffffff;
+   font-family: 'Open Sans', Arial, sans-serif;
    text-align: center;
 }

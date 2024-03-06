@@ -49,18 +49,18 @@
    <main class="main">
 
       <div class="container">
+         <header class="header">
+            <div class="header__wrapper-welcome">
+               <div class="header__avatar"></div>
+               <h2 class="header__title"><span class="header__title-span">Привет,</span><br>Соня</h2>
+               <!-- <div class="header__date">5 марта</div> -->
 
+            </div>
+            <div class="header__toggle-theme">Тема</div>
+            <div class="header__today">Дата</div>
+         </header>
          <section class="screen-area">
-            <header class="header">
-               <div class="header__wrapper-welcome">
-                  <div class="header__avatar"></div>
-                  <h2 class="header__title"><span class="header__title-span">Привет,</span><br>Соня</h2>
-                  <!-- <div class="header__date">5 марта</div> -->
 
-               </div>
-               <div class="header__toggle-theme">Тема</div>
-               <div class="header__today">Дата</div>
-            </header>
             <div id="section-todoList" class="wrapper" hidden role="tabpanel" aria-labelledby="todo-list">
                <form name="add" action="#">
                   <input name="addInput" type="text" class="input" placeholder="Введите название" id="input-title">
@@ -89,7 +89,7 @@
                      <p class="weather__description">Преимущественно облачно</p>
                   </div>
                   <div class="weather__info-container">
-                     <h3 class="weather__info-title">Информация о погоде</h3>
+                     <p class="weather__info-title">Информация о погоде</p>
                      <div class="weather__info-items">
                         <div class="weather__info-item">
                            <div class="weather__info-item-icon"></div>
@@ -150,7 +150,36 @@
                      <div class="weather__other-city-wrapper">
                         <p class="weather__other-city-add">+ Добавить</p>
                      </div>
-
+                  </div>
+                  <div class="weather__weekly">
+                     <h4 class="weather__weekly-title">Прогноз на 5 дней</h4>
+                     <div class="weather__weekly-items">
+                        <div class="weather__weekly-item">
+                           <p class="weather__weekly-item-day">Вт</p>
+                           <div class="weather__weekly-item-img"></div>
+                           <p class="weather__weekly-item-degree">12&deg;</p>
+                        </div>
+                        <div class="weather__weekly-item">
+                           <p class="weather__weekly-item-day">Ср</p>
+                           <div class="weather__weekly-item-img"></div>
+                           <p class="weather__weekly-item-degree">11&deg;</p>
+                        </div>
+                        <div class="weather__weekly-item">
+                           <p class="weather__weekly-item-day">Чт</p>
+                           <div class="weather__weekly-item-img"></div>
+                           <p class="weather__weekly-item-degree">10&deg;</p>
+                        </div>
+                        <div class="weather__weekly-item">
+                           <p class="weather__weekly-item-day">Пт</p>
+                           <div class="weather__weekly-item-img"></div>
+                           <p class="weather__weekly-item-degree">12&deg;</p>
+                        </div>
+                        <div class="weather__weekly-item">
+                           <p class="weather__weekly-item-day">Сб</p>
+                           <div class="weather__weekly-item-img"></div>
+                           <p class="weather__weekly-item-degree">13&deg;</p>
+                        </div>
+                     </div>
                   </div>
                </div>
 
