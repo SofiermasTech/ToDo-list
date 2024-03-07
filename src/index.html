@@ -83,8 +83,12 @@
             <div id="section-weather" class="weather" hidden role="tabpanel" aria-labelledby="weather">
                <div class="weather__wrapper">
                   <div class="weather__container">
-                     <p class="weather__subtitle">Wheather today is</p>
-                     <h1 class="weather__city">Los Angeles</h1>
+                     <div class="weather__subtitle"></div>
+                     <div class="weather__edit-btn">
+                        Изменить
+                        <div class="weather__edit-btn-img"></div>
+                     </div>
+                     <h1 class="weather__city">Санкт-Петербург</h1>
                      <p class="weather__temperature">10&deg;</>
                      <p class="weather__description">Преимущественно облачно</p>
                   </div>
@@ -203,17 +207,31 @@
       </template>
    </main>
 
-   <section class="popup-edit">
-      <div class="popup-edit__container">
+   <section class="popup popup-edit">
+      <div class="popup__container">
          <button class="popup__close">
             Закрыть
             <img class="popup__close-img" src="<%=require('./images/popup_close_b.png')%>" alt="">
          </button>
-         <h2 class="popup-edit__title">Редактировать заголовок</h2>
-         <form class="popup-edit__form" method="post" name="popupEditForm">
+         <h2 class="popup__title">Редактировать заголовок</h2>
+         <form class="popup__form" method="post" name="popupEditForm">
             <input type="text" name="title" value="Жак-Ив Кусто" required placeholder="Название заметки"
                class="popup__input">
             <button class="btn popup__submit" type="submit">Сохранить</button>
+         </form>
+      </div>
+   </section>
+
+   <section class="popup popup-city">
+      <div class="popup__container">
+         <button class="popup__close">
+            Закрыть
+            <img class="popup__close-img" src="<%=require('./images/popup_close_b.png')%>" alt="">
+         </button>
+         <h2 class="popup__title">Выбор локации</h2>
+         <form class="popup__form" method="post" name="popupSearchForm">
+            <input type="text" name="inputSearch" value="" required placeholder="Введите город" class="popup__input">
+            <button name="btnSubmitSearch" class="btn popup__submit" type="submit">Сохранить</button>
          </form>
       </div>
    </section>

@@ -1,5 +1,47 @@
 import './index.css';
 
+/*---------------------------------API Weather-app------------------------------------------- */
+const apiKey = '6ef6af6313b24837877152925240703';
+const linkApi =
+   `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=London`
+
+const info = {
+   location: 'London',
+   feelsLike: '0',
+   uvi: '0',
+}
+
+const fetchData = async () => {
+   const result = await fetch(`${linkApi}&q=${info.location}`);
+   const data = await result.json();
+   console.log(data);
+}
+
+fetchData();
+
+/*--------------------------------- Popup weather city search ------------------------------------------- */
+
+const btnSearchCity = document.querySelector('.weather__edit-btn');
+const popupSearchCity = document.querySelector('.popup-city');
+const formSearchCity = document.forms.popupSearchForm;
+const inputSearchCity = formSearchCity.elements.inputSearch;
+//const btnSubmitSearchCity = formSearchCity.elements.btnSubmitSearch;
+const titleWeatherCity = document.querySelector('.weather__city');
+//console.log(inputSearchCity);
+
+btnSearchCity.addEventListener('click', () => {
+   openPopup(popupSearchCity);
+   inputSearchCity.value = titleWeatherCity.textContent;
+})
+
+formSearchCity.addEventListener('submit', function (evt) {
+   evt.preventDefault();
+
+   titleWeatherCity.textContent = inputSearchCity.value;
+   closePopup(popupSearchCity);
+})
+
+
 /*---------------------------------Переключение вкладок aside------------------------------------------- */
 
 // Кнопки aside
@@ -65,7 +107,8 @@ btnAsideAll.forEach(item => item.addEventListener('click', handleAsideClick))
 const listToDo = document.querySelector('.list-todo');
 const noTasksElement = document.querySelector('.no-list-todo');
 const popup = document.querySelector('.popup-edit');
-const btnPopupClose = document.querySelector('.popup__close');
+const popupAll = document.querySelectorAll('.popup');
+const btnPopupClose = document.querySelectorAll('.popup__close');
 const inputPopup = document.querySelector('.popup__input');
 const btnSavePopup = document.querySelector('.popup__submit');
 
@@ -75,15 +118,17 @@ const btnFormCreate = formAddList.elements.addBtn;
 console.log(inputTitleAdd)
 
 function openPopup(popup) {
-   popup.classList.add('popup-edit_opened');
+   popup.classList.add('popup_opened');
 }
 
 function closePopup(popup) {
-   popup.classList.remove('popup-edit_opened');
+   popup.classList.remove('popup_opened');
 }
 
-btnPopupClose.addEventListener('click', () => closePopup(popup));
-
+btnPopupClose.forEach((button) => {
+   const popup = button.closest('.popup');
+   button.addEventListener('click', () => closePopup(popup));
+});
 
 function renderNoTasks() {
    noTasksElement.classList.remove('no-list-todo_hidden');
@@ -168,7 +213,7 @@ function addTasks(inputValue) {
 
 function closePopupEsc(evt) {
    if (evt.key === 'Escape') {
-      const popupVisible = document.querySelector('.popup-edit_opened')
+      const popupVisible = document.querySelector('.popup_opened')
       closePopup(popupVisible);
    }
 }
