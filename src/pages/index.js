@@ -3,21 +3,31 @@ import './index.css';
 /*---------------------------------API Weather-app------------------------------------------- */
 const apiKey = '6ef6af6313b24837877152925240703';
 const linkApi =
-   `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=London`
+   `http://api.weatherapi.com/v1/current.json?key=${apiKey}`
 
-const info = {
-   location: 'London',
-   feelsLike: '0',
-   uvi: '0',
+const weatherData = {
+   temperature: document.querySelector('.weather__temperature'),
+   description: document.querySelector('.weather__description'),
+   region: document.querySelector('.weather__region'),
 }
 
+const inputCity = document.getElementById('weatherInput');
+//const tempWeather = document.querySelector('.weather__temperature');
+//const descriptionWeather = document.querySelector('.weather__description');
+//const regionWeather = document.querySelector('.weather__region');
+let city;
+
 const fetchData = async () => {
-   const result = await fetch(`${linkApi}&q=${info.location}`);
+   const result = await fetch(`${linkApi}&q=${city}`);
    const data = await result.json();
+
+   weatherData.region.textContent = data.location.country;
+   weatherData.temperature.textContent = `${data.current.temp_c}°`;
+   weatherData.description.textContent = data.current.condition.text;
+
    console.log(data);
 }
 
-fetchData();
 
 /*--------------------------------- Popup weather city search ------------------------------------------- */
 
@@ -25,20 +35,22 @@ const btnSearchCity = document.querySelector('.weather__edit-btn');
 const popupSearchCity = document.querySelector('.popup-city');
 const formSearchCity = document.forms.popupSearchForm;
 const inputSearchCity = formSearchCity.elements.inputSearch;
-//const btnSubmitSearchCity = formSearchCity.elements.btnSubmitSearch;
 const titleWeatherCity = document.querySelector('.weather__city');
 //console.log(inputSearchCity);
 
 btnSearchCity.addEventListener('click', () => {
    openPopup(popupSearchCity);
-   inputSearchCity.value = titleWeatherCity.textContent;
+   inputSearchCity.value = titleWeatherCity.textContent.trim();
 })
 
 formSearchCity.addEventListener('submit', function (evt) {
    evt.preventDefault();
 
-   titleWeatherCity.textContent = inputSearchCity.value;
+   titleWeatherCity.textContent = inputSearchCity.value.trim();
    closePopup(popupSearchCity);
+   city = inputCity.value.trim();
+   fetchData();
+
 })
 
 
@@ -194,22 +206,6 @@ function addTasks(inputValue) {
 
    listToDo.append(todoElement);
 }
-
-
-//--------Обработчик на Enter ненужен, т.к. происходит и так происходит submit, 
-//--------если пользователь находится в одном из полей формы. 
-//--------Поэтому дополнительные обработчики нажатия клавиш для сабмита делать не нужно.
-
-// formAddList.addEventListener('keydown', function (evt) {
-//    if (evt.key === 'Enter') {
-//       if (inputTitleAdd.value.length !== 0) {
-//          addTasks(inputTitleAdd.value);
-//          renderHasTasks();
-//          //setSubmitButtonState(false);
-
-//       }
-//    }
-// });
 
 function closePopupEsc(evt) {
    if (evt.key === 'Escape') {

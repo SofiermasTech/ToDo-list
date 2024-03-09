@@ -88,6 +88,7 @@
                         Изменить
                         <div class="weather__edit-btn-img"></div>
                      </div>
+                     <p class="weather__region">Россия</p>
                      <h1 class="weather__city">Санкт-Петербург</h1>
                      <p class="weather__temperature">10&deg;</>
                      <p class="weather__description">Преимущественно облачно</p>
@@ -230,7 +231,7 @@
          </button>
          <h2 class="popup__title">Выбор локации</h2>
          <form class="popup__form" method="post" name="popupSearchForm">
-            <input type="text" name="inputSearch" value="" required placeholder="Введите город" class="popup__input">
+            <input id="weatherInput" type="text" name="inputSearch" value="" required placeholder="Введите город" class="popup__input">
             <button name="btnSubmitSearch" class="btn popup__submit" type="submit">Сохранить</button>
          </form>
       </div>
