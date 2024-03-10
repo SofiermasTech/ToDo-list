@@ -1,31 +1,96 @@
 import './index.css';
 
+/*---------------------------------Работа с датами header +  weather template------------------------------------------- */
+
+
+
+const formatter = new Intl.DateTimeFormat('ru', {
+   weekday: 'short',
+   //   year: 'numeric',
+   //   month: 'numeric',
+   //   day: 'numeric',
+   //   hour: 'numeric',
+   //   minute: 'numeric',
+   //   second: 'numeric',
+   //   hour12: false,
+   timeZone: 'Europe/Moscow'
+});
+
+//Дни недели в weather-template
+const today = new Date();
+const dataWeek = formatter.format(today);
+const dayWeekFirst = formatter.format(today.setDate(today.getDate() + 1));
+const dayWeekSecond = formatter.format(today.setDate(today.getDate() + 1));
+const dayWeekThird = formatter.format(today.setDate(today.getDate() + 1));
+
+console.log(dataWeek);
+console.log(dayWeekFirst);
+console.log(dayWeekSecond);
+console.log(dayWeekThird);
+
+//Дата в header с днем недели
+const dateHeader = document.querySelector('.header__today');
+dateHeader.textContent = new Date().toLocaleDateString() + ', ' + dataWeek.charAt(0).toUpperCase() + dataWeek.slice(1);
+
+
 /*---------------------------------API Weather-app------------------------------------------- */
 const apiKey = '6ef6af6313b24837877152925240703';
-const linkApi =
-   `http://api.weatherapi.com/v1/current.json?key=${apiKey}`
+const inputCity = document.getElementById('weatherInput');
+let city;
 
 const weatherData = {
    temperature: document.querySelector('.weather__temperature'),
    description: document.querySelector('.weather__description'),
    region: document.querySelector('.weather__region'),
+   feelslike: document.getElementById('fillsLike'),
+   uv: document.getElementById('uv'),
+   humidity: document.getElementById('humidity'),
+   windSpeed: document.getElementById('windSpeed'),
+   sunrise: document.getElementById('sunrise'),
+   sunset: document.getElementById('sunset'),
 }
 
-const inputCity = document.getElementById('weatherInput');
-//const tempWeather = document.querySelector('.weather__temperature');
-//const descriptionWeather = document.querySelector('.weather__description');
-//const regionWeather = document.querySelector('.weather__region');
-let city;
+const weatherWeek = {
+   dayFirst: document.getElementById('dayWeekFirst'),
+   daySecond: document.getElementById('dayWeekSecond'),
+   dayThird: document.getElementById('dayWeekThird'),
+   degreeDayWeeks: document.getElementById('.weather__weekly-item-degree'),
+}
+
 
 const fetchData = async () => {
-   const result = await fetch(`${linkApi}&q=${city}`);
+   const linkApiCurrent = `http://api.weatherapi.com/v1/current.json?key=${apiKey}`
+   const result = await fetch(`${linkApiCurrent}&q=${city}`);
    const data = await result.json();
 
    weatherData.region.textContent = data.location.country;
    weatherData.temperature.textContent = `${data.current.temp_c}°`;
    weatherData.description.textContent = data.current.condition.text;
+   weatherData.feelslike.textContent = data.current.feelslike_c;
+   weatherData.uv.textContent = data.current.uv;
+   weatherData.humidity.textContent = `${data.current.humidity}%`;
+   weatherData.windSpeed.textContent = data.current.wind_kph;
 
    console.log(data);
+}
+
+
+const getWeatherWeeks = async () => {
+   const linkApiForecast = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}`
+   const result = await fetch(`${linkApiForecast}&q=${city}&days=7`);
+   const data = await result.json();
+
+   weatherData.sunrise.textContent = data.forecast.forecastday[0].astro.sunrise;
+   weatherData.sunset.textContent = data.forecast.forecastday[0].astro.sunset;
+
+   console.log(data);
+
+}
+
+function putDayWeeks() {
+   weatherWeek.dayFirst.textContent = dayWeekFirst.charAt(0).toUpperCase() + dayWeekFirst.slice(1);
+   weatherWeek.daySecond.textContent = dayWeekSecond.charAt(0).toUpperCase() + dayWeekSecond.slice(1);
+   weatherWeek.dayThird.textContent = dayWeekThird.charAt(0).toUpperCase() + dayWeekThird.slice(1);
 }
 
 
@@ -50,7 +115,8 @@ formSearchCity.addEventListener('submit', function (evt) {
    closePopup(popupSearchCity);
    city = inputCity.value.trim();
    fetchData();
-
+   getWeatherWeeks();
+   putDayWeeks();
 })
 
 
@@ -85,12 +151,6 @@ function addActiveClasses(id) {
    btnAsideAll.find((tab) => tab.id === id).setAttribute('aria-selected', true);
    btnAsideAll.find((tab) => tab.id === id).classList.add('aside__item-type-active');
    document.querySelector('.' + iconClasses[id]).classList.add(iconClasses[id] + '-active');
-
-   //второй вариант (есть не решенная ошибка)
-   // const tab = btnAsideAll.querySelector(`#${id}`);
-   // tab.setAttribute('aria-selected', true);
-   // tab.classList.add('aside__item-type-active');
-   // document.querySelector('.' + iconClasses[id]).classList.add(iconClasses[id] + '-active');
 }
 
 function getTabPanel(id) {
@@ -106,11 +166,24 @@ function handleAsideClick(e) {
    const id = e.currentTarget.id;
    addActiveClasses(id);
    // 4. Отобразить нужный tapPanel
-   getTabPanel(id).hidden = false;
+
+
+   if (e.currentTarget.id === 'weather') {
+      openPopup(popupSearchCity);
+      getTabPanel(id).hidden = false;
+   } else {
+      getTabPanel(id).hidden = false;
+   }
 }
 
 // слушатель для всех кнопок aside
-btnAsideAll.forEach(item => item.addEventListener('click', handleAsideClick))
+btnAsideAll.forEach((item) => {
+
+   item.addEventListener('click', handleAsideClick)
+})
+
+// const btnWeather = document.getElementById('weather');
+// btnWeather.addEventListener('click', openPopup(popupSearchCity));
 
 
 
@@ -229,6 +302,7 @@ formAddList.addEventListener('input', function (evt) {
    const isValid = inputTitleAdd.value.length > 0;
    setSubmitButtonState(isValid)
 })
+
 
 
 /*---------------------------------Таймер------------------------------------------- */
